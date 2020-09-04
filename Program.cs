@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Vehicle
 {
@@ -6,44 +7,125 @@ namespace Vehicle
     {
         static void Main(string[] args)
         {
-            Tesla electricCar = new Tesla();
-            electricCar.BatteryKWh = 101.1;
-            electricCar.MainColor = "Black";
-            electricCar.MaximumOccupancy = "5";
+            // using classes to instantiate new obejcts
+            Zero fxs = new Zero();
+            fxs.BatteryKWh = 77.7;
+            fxs.MainColor = "Blue";
+            fxs.MaximumOccupancy = "1";
+            fxs.CurrentChargePercentage = 10;
 
-            Ram offRoadTruck = new Ram();
-            offRoadTruck.FuelCapacity = 99.9;
-            offRoadTruck.MainColor = "Red";
-            offRoadTruck.MaximumOccupancy = "4";
+            Zero fx = new Zero();
+            fxs.BatteryKWh = 77.7;
+            fxs.MainColor = "Purple";
+            fxs.MaximumOccupancy = "1";
+            fx.CurrentChargePercentage = 15;
 
-            Cessna plane = new Cessna();
-            plane.FuelCapacity = 88.8;
-            plane.MainColor = "White";
-            plane.MaximumOccupancy = "8";
+            Tesla modelS = new Tesla();
+            modelS.BatteryKWh = 101.1;
+            modelS.MainColor = "Black";
+            modelS.MaximumOccupancy = "5";
+            modelS.CurrentChargePercentage = 20;
 
-            Zero electricMotorcycle = new Zero();
-            electricMotorcycle.BatteryKWh = 77.7;
-            electricMotorcycle.MainColor = "Blue";
-            electricMotorcycle.MaximumOccupancy = "1";
+            Ram SLT = new Ram();
+            SLT.FuelCapacity = 99.9;
+            SLT.MainColor = "Red";
+            SLT.MaximumOccupancy = "4";
 
-            electricCar.Drive();
-            electricCar.Turn();
-            electricCar.Stop();
+            Cessna mx410 = new Cessna();
+            mx410.FuelCapacity = 88.8;
+            mx410.MainColor = "White";
+            mx410.MaximumOccupancy = "8";
+
+            // using interface to create list 
+
+            List<IElectricVehicle> electricVehicles = new List<IElectricVehicle>()
+            {
+                // objects to be used in list
+                fx,
+                fxs,
+                modelS
+            };
+            // looping over with for each to grab the current charge off obejct. 
+            // Writing out current charge percentage from objects
+            Console.WriteLine("Electric Vehicles");
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
+            // looping over with for each to grab the current charge off obejct and apply the Charge Battery method to it. 
+
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                // This method should charge the vehicle to 100%
+                ev.ChargeBattery();
+            }
+            // looping over with for each to grab the New current tank percentage off obejct. 
+            // Writing out the new current charge percentage from object
+            foreach (IElectricVehicle ev in electricVehicles)
+            {
+                Console.WriteLine($"{ev.CurrentChargePercentage}");
+            }
             Console.WriteLine("-------");
 
-            electricMotorcycle.Drive();
-            electricMotorcycle.Turn();
-            electricMotorcycle.Stop();
+            /***********************************************/
+
+            // using interface to create list 
+
+            List<IGasVehicle> gasVehicles = new List<IGasVehicle>()
+
+            {
+                // objects to be used in list
+                SLT,
+                mx410
+            };
+
+            // looping over with for each to grab the current tank percentage off obejct. 
+            // Writing out current tank percentage from objects
+
+            Console.WriteLine("Gas Vehicles");
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
+            // looping over with for each to grab the current charge off obejct and apply the Refuel Tank method to it.
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                // This Method should completely refuel the gas tank
+                gv.RefuelTank();
+            }
+            // looping over with for each to grab the New current tank percentage off obejct. 
+            // Writing out the new current charge percentage from object
+            foreach (IGasVehicle gv in gasVehicles)
+            {
+                Console.WriteLine($"{gv.CurrentTankPercentage}");
+            }
             Console.WriteLine("-------");
 
-            offRoadTruck.Drive();
-            offRoadTruck.Turn();
-            offRoadTruck.Stop();
+            // Calling methods on instantiated objects
+
+            modelS.Drive();
+            modelS.Turn();
+            modelS.Stop();
             Console.WriteLine("-------");
 
-            plane.Turn();
-            plane.Drive();
-            plane.Stop();
+            fxs.Drive();
+            fxs.Turn();
+            fxs.Stop();
+            Console.WriteLine("-------");
+
+            fx.Drive();
+            fx.Turn();
+            fx.Stop();
+            Console.WriteLine("-------");
+
+            SLT.Drive();
+            SLT.Turn();
+            SLT.Stop();
+            Console.WriteLine("-------");
+
+            mx410.Turn();
+            mx410.Drive();
+            mx410.Stop();
 
         }
     }
