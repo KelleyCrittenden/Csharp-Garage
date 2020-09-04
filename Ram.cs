@@ -1,10 +1,9 @@
-// This File creates a template for making a Ram object. 
-
+// This File creates a template for making a Ram object, Sub/Child Class of vehicle
 using System;
 
 namespace Vehicle
 {
-    // Class name with 2 interfaces attatched
+    // Class name with 1 Parent Class and 1 Interface
     public class Ram : Vehicle, IGasVehicle // Gas powered truck
     {
 
@@ -19,7 +18,7 @@ namespace Vehicle
         {
             CurrentTankPercentage = 100;
         }
-        // Methods that console a string with the color property of instantiated Ram object in program.cs
+        // Over riding methods that are on the Parent/Base Class. Methods that console a string with the color property of instantiated Ram object in program.cs
 
         public override void Drive()
         {

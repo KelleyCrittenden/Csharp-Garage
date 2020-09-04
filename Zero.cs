@@ -1,4 +1,4 @@
-// This File creates a template for making a Zero object. 
+// This File creates a template for making a Zero object, Sub/Child Class of vehicle
 
 using System;
 
@@ -16,7 +16,7 @@ namespace Vehicle
         {
             CurrentChargePercentage = 100;
         }
-        // Methods that console a string with the color property of instantiated zero object in program.cs
+        // Over riding methods that are on the Parent/Base Class. Methods that console a string with the color property of instantiated zero object in program.cs
         public override void Drive()
         {
             Console.WriteLine($"The {MainColor} Zero drives past");
